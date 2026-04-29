@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — GameHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="steam-logo">
+            <h1>🎮 GAMEHUB</h1>
+            <span>игровое сообщество</span>
+        </div>
 
+        <h2>Вход в аккаунт</h2>
+        <div class="subtitle">Добро пожаловать обратно!</div>
+
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="username">👤 ИМЯ ПОЛЬЗОВАТЕЛЯ</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">🔒 ПАРОЛЬ</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn-steam">Войти</button>
+        </form>
+
+        <div class="login-link">
+            <p>Нет аккаунта? <a href="{{ url_for('auth.register') }}">Зарегистрироваться</a></p>
+        </div>
+    </div>
 </body>
 </html>

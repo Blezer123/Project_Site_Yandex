@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Motiva Sans', Arial, sans-serif;
+    background: linear-gradient(135deg, #0B1423 0%, #1A2A3A 50%, #0F1A2A 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 480px;
+    width: 100%;
+    background: linear-gradient(135deg, #1E2A3A 0%, #16212E 100%);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    padding: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.steam-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.steam-logo h1 {
+    font-size: 42px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #67c1f5 0%, #417a9b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+}
+
+.steam-logo span {
+    font-size: 12px;
+    color: #66c0f4;
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #E5E5E5;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    border-left: 3px solid #66c0f4;
+    padding-left: 12px;
+}
+
+.subtitle {
+    color: #8F98A0;
+    font-size: 13px;
+    margin-bottom: 28px;
+    padding-left: 15px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 400;
+    color: #C6D4DF;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px 12px;
+    background: #1A2533;
+    border: 1px solid #2A3A4A;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus {
+    outline: none;
+    border-color: #66c0f4;
+    background: #1E2D3E;
+    box-shadow: 0 0 5px rgba(102, 192, 244, 0.3);
+}
+
+/* Стили для календаря (date picker) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.6);
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    filter: invert(0.8);
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    color: #FFFFFF;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    color: #FFFFFF;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #FFFFFF;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+    color: #8F98A0;
+}
+
+.btn-steam {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(180deg, #5C9E3E 0%, #3A6B1E 100%);
+    border: none;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-steam:hover {
+    background: linear-gradient(180deg, #6EB840 0%, #4B8B2C 100%);
+}
+
+.btn-steam:active {
+    transform: translateY(1px);
+}
+
+.flash-messages {
+    margin: 15px 0;
+}
+
+.success {
+    background: rgba(76, 175, 80, 0.15);
+    border-left: 3px solid #4CAF50;
+    color: #A5D6A7;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.error {
+    background: rgba(244, 67, 54, 0.15);
+    border-left: 3px solid #F44336;
+    color: #EF9A9A;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #2A3A4A;
+}
+
+.login-link a {
+    color: #66c0f4;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.login-link p {
+    color: #8F98A0;
+    font-size: 13px;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.row .form-group {
+    flex: 1;
+}
