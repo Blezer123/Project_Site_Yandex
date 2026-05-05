@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Заявки в друзья — GameHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="steam-logo">
+            <h1>🎮 GAMEHUB</h1>
+            <span>игровое сообщество</span>
+        </div>
 
+        <h2>👥 Заявки в друзья</h2>
+
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <p style="color: #8F98A0; text-align: center; padding: 40px;">
+            🚧 Функционал друзей в разработке 🚧
+        </p>
+
+        <div class="login-link">
+            <a href="{{ url_for('main.index') }}">← На главную</a>
+        </div>
+    </div>
 </body>
 </html>

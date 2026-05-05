@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub — Главная</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="steam-logo">
+            <h1>🎮 GAMEHUB</h1>
+            <span>игровое сообщество</span>
+        </div>
 
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        {% if current_user.is_authenticated %}
+            <h2>Добро пожаловать, {{ current_user.username }}!</h2>
+            <div class="subtitle">Рады снова видеть тебя в игровом сообществе</div>
+
+            <div class="form-group">
+                <a href="{{ url_for('profile.view', user_id=current_user.id) }}" class="btn-steam" style="display: block; text-align: center; text-decoration: none;">👤 Мой профиль</a>
+            </div>
+            <div class="form-group">
+                <a href="{{ url_for('friends.requests') }}" class="btn-steam" style="display: block; text-align: center; text-decoration: none; background: linear-gradient(180deg, #3A6B1E 0%, #2C4F15 100%);">👥 Заявки в друзья</a>
+            </div>
+            <div class="login-link">
+                <a href="{{ url_for('auth.logout') }}">🚪 Выйти из аккаунта</a>
+            </div>
+        {% else %}
+            <h2>Добро пожаловать, Гость!</h2>
+            <div class="subtitle">Присоединяйся к сообществу геймеров</div>
+
+            <div class="form-group">
+                <a href="{{ url_for('auth.login') }}" class="btn-steam" style="display: block; text-align: center; text-decoration: none;">🔐 Войти</a>
+            </div>
+            <div class="form-group">
+                <a href="{{ url_for('auth.register') }}" class="btn-steam" style="display: block; text-align: center; text-decoration: none; background: linear-gradient(180deg, #3A6B1E 0%, #2C4F15 100%);">📝 Зарегистрироваться</a>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
