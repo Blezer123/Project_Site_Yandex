@@ -12,6 +12,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    color: #FFFFFF;
 }
 
 .container {
@@ -37,7 +38,6 @@ body {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: -0.5px;
 }
 
 .steam-logo span {
@@ -47,7 +47,7 @@ body {
 }
 
 h2 {
-    color: #E5E5E5;
+    color: #FFFFFF;
     font-size: 24px;
     font-weight: 400;
     margin-bottom: 8px;
@@ -55,8 +55,12 @@ h2 {
     padding-left: 12px;
 }
 
+h3 {
+    color: #FFFFFF;
+}
+
 .subtitle {
-    color: #8F98A0;
+    color: #C6D4DF;
     font-size: 13px;
     margin-bottom: 28px;
     padding-left: 15px;
@@ -78,10 +82,9 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="password"],
-input[type="date"] {
+input[type="password"] {
     width: 100%;
-    padding: 12px 12px;
+    padding: 12px;
     background: #1A2533;
     border: 1px solid #2A3A4A;
     border-radius: 4px;
@@ -93,40 +96,11 @@ input[type="date"] {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="date"]:focus {
+input[type="password"]:focus {
     outline: none;
     border-color: #66c0f4;
     background: #1E2D3E;
     box-shadow: 0 0 5px rgba(102, 192, 244, 0.3);
-}
-
-/* Стили для календаря (date picker) */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.6);
-    cursor: pointer;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator:hover {
-    filter: invert(0.8);
-}
-
-input[type="date"]::-webkit-datetime-edit {
-    color: #FFFFFF;
-}
-
-input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-    color: #FFFFFF;
-}
-
-input[type="date"]::-webkit-datetime-edit-month-field,
-input[type="date"]::-webkit-datetime-edit-day-field,
-input[type="date"]::-webkit-datetime-edit-year-field {
-    color: #FFFFFF;
-}
-
-input[type="date"]::-webkit-datetime-edit-text {
-    color: #8F98A0;
 }
 
 .btn-steam {
@@ -144,6 +118,9 @@ input[type="date"]::-webkit-datetime-edit-text {
     letter-spacing: 1px;
     text-shadow: 0 1px 1px rgba(0,0,0,0.3);
     transition: all 0.2s ease;
+    display: block;
+    text-align: center;
+    text-decoration: none;
 }
 
 .btn-steam:hover {
@@ -152,6 +129,14 @@ input[type="date"]::-webkit-datetime-edit-text {
 
 .btn-steam:active {
     transform: translateY(1px);
+}
+
+.btn-secondary {
+    background: linear-gradient(180deg, #3A6B1E 0%, #2C4F15 100%);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(180deg, #4B8B2C 0%, #3A6B1E 100%);
 }
 
 .flash-messages {
@@ -196,15 +181,261 @@ input[type="date"]::-webkit-datetime-edit-text {
 }
 
 .login-link p {
-    color: #8F98A0;
+    color: #C6D4DF;
     font-size: 13px;
 }
 
-.row {
-    display: flex;
-    gap: 15px;
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
 }
 
-.row .form-group {
+.game-card {
+    background: #1A2533;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.game-card .no-image {
+    height: 120px;
+    background: #2A3A4A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #C6D4DF;
+}
+
+.game-card h3 {
+    font-size: 16px;
+    padding: 10px 10px 5px;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+.game-card p {
+    padding: 0 10px 10px;
+    margin: 0;
+    font-size: 12px;
+    color: #C6D4DF;
+}
+
+.search-box {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input {
     flex: 1;
+    padding: 12px;
+    background: #1A2533;
+    border: 1px solid #2A3A4A;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #66c0f4;
+}
+
+.search-box button {
+    padding: 12px 24px;
+    margin: 0;
+    width: auto;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    background: #2A3A4A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    margin: 0 auto 20px;
+    color: #C6D4DF;
+}
+
+.info-row {
+    margin: 15px 0;
+    padding: 10px;
+    background: #1A2533;
+    border-radius: 8px;
+}
+
+.info-label {
+    font-size: 12px;
+    color: #66c0f4;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.review-item {
+    background: #1A2533;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.review-rating {
+    color: #FFD700;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.review-text {
+    color: #FFFFFF;
+    line-height: 1.5;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #8B0000;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background: #CC0000;
+}
+
+.friend-badge {
+    display: inline-block;
+    background: #2A3A4A;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin: 5px;
+    color: #66c0f4;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.friend-badge:hover {
+    background: #3A4A5A;
+    color: #88D0F4;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    background: #1A2533;
+    border: 1px solid #2A3A4A;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #66c0f4;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #2A3A4A;
+    margin: 30px 0;
+}
+
+.section-title {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.empty-message {
+    text-align: center;
+    color: #C6D4DF;
+    padding: 20px;
+}
+
+.request-card {
+    background: #1A2533;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+
+.request-card strong {
+    color: #66c0f4;
+}
+
+.request-actions {
+    display: inline;
+}
+
+.request-btn {
+    width: auto;
+    padding: 8px 20px;
+    display: inline-block;
+}
+
+.request-btn-accept {
+    background: linear-gradient(180deg, #5C9E3E 0%, #3A6B1E 100%);
+}
+
+.request-btn-accept:hover {
+    background: linear-gradient(180deg, #6EB840 0%, #4B8B2C 100%);
+}
+
+.request-btn-reject {
+    background: #8B0000;
+}
+
+.request-btn-reject:hover {
+    background: #CC0000;
+}
+
+.profile-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.add-friend-btn {
+    width: 100%;
+}
+
+.friends-list {
+    margin-bottom: 30px;
+}
+
+.review-game {
+    margin-top: 10px;
+}
+
+.delete-review-form {
+    display: inline;
 }

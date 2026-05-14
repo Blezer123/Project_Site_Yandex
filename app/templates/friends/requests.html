@@ -24,12 +24,39 @@
             {% endwith %}
         </div>
 
-        <p style="color: #8F98A0; text-align: center; padding: 40px;">
-            🚧 Функционал друзей в разработке 🚧
-        </p>
+        <!-- Входящие заявки -->
+
+        <h3>📨 Входящие заявки</h3>
+        {% if incoming %}
+            {% for req in incoming %}
+            <div class="request-card">
+                <p><strong>{{ req.from_user.username }}</strong> хочет добавить вас в друзья</p>
+                <form method="POST" action="{{ url_for('friends.accept_request', request_id=req.id) }}" class="request-actions">
+                    <button type="submit" class="btn-steam request-btn request-btn-accept">✅ Принять</button>
+                </form>
+                <form method="POST" action="{{ url_for('friends.reject_request', request_id=req.id) }}" class="request-actions">
+                    <button type="submit" class="btn-steam request-btn request-btn-reject">❌ Отклонить</button>
+                </form>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Нет входящих заявок</p>
+        {% endif %}
+
+        <!-- Исходящие заявки -->
+        <h3>📤 Исходящие заявки</h3>
+        {% if outgoing %}
+            {% for req in outgoing %}
+            <div class="request-card">
+                <p>Вы отправили заявку <strong>{{ req.to_user.username }}</strong> (ожидает ответа)</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Нет исходящих заявок</p>
+        {% endif %}
 
         <div class="login-link">
-            <a href="{{ url_for('main.index') }}">← На главную</a>
+            <a href="{{ url_for('profile.view', user_id=current_user.id) }}">← Назад в профиль</a>
         </div>
     </div>
 </body>

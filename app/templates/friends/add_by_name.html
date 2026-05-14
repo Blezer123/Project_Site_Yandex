@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить друга — GameHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="steam-logo">
+            <h1>🎮 GAMEHUB</h1>
+            <span>игровое сообщество</span>
+        </div>
+
+        <h2>👥 Добавить друга</h2>
+        <div class="subtitle">Введите имя пользователя</div>
+
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label>👤 Имя пользователя</label>
+                <input type="text" name="username" placeholder="Например: Иван" required>
+            </div>
+            <button type="submit" class="btn-steam">📨 Отправить заявку</button>
+        </form>
+
+        <div class="login-link">
+            <a href="{{ url_for('friends.requests_list') }}">← К заявкам</a> |
+            <a href="{{ url_for('profile.view', user_id=current_user.id) }}">← Назад в профиль</a>
+        </div>
+    </div>
+</body>
+</html>

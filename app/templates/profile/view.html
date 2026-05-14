@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Профиль — GameHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="steam-logo">
+            <h1>🎮 GAMEHUB</h1>
+            <span>игровое сообщество</span>
+        </div>
 
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Аватар -->
+
+        <div class="profile-avatar">
+            🎮
+        </div>
+
+        <!-- Информация о пользователе -->
+
+        <div class="info-row">
+            <div class="info-label">Имя пользователя</div>
+            <div class="info-value">{{ user.username }}</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">Email</div>
+            <div class="info-value">{{ user.email }}</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">Дата регистрации</div>
+            <div class="info-value">{{ user.created_at.strftime('%d.%m.%Y') if user.created_at else 'Неизвестно' }}</div>
+        </div>
+
+        <!-- Кнопка редактирования + добавить друга только для своего профиля -->
+
+        {% if current_user.id == user.id %}
+            <div class="form-group">
+                <a href="{{ url_for('profile.edit') }}" class="btn-steam profile-btn">✏️ Редактировать профиль</a>
+            </div>
+            <div class="form-group">
+                <a href="{{ url_for('friends.add_by_name') }}" class="btn-steam btn-secondary">👥 Добавить друга</a>
+            </div>
+        {% endif %}
+
+        <!-- Кнопка добавления в друзья для чужих профилей -->
+
+        {% if current_user.id != user.id %}
+            <div class="form-group">
+                <form method="POST" action="{{ url_for('friends.send_request', user_id=user.id) }}">
+                    <button type="submit" class="btn-steam add-friend-btn">➕ Добавить в друзья</button>
+                </form>
+            </div>
+        {% endif %}
+
+        <!-- Ссылка на заявки только для своего профиля -->
+
+        {% if current_user.id == user.id %}
+            <div class="form-group">
+                <a href="{{ url_for('friends.requests_list') }}" class="btn-steam btn-secondary">👥 Заявки в друзья</a>
+            </div>
+        {% endif %}
+
+        <!-- Список друзей -->
+
+        <h3 class="section-title">👥 Друзья ({{ friends|length }})</h3>
+        <div class="friends-list">
+            {% for friend in friends %}
+                <a href="{{ url_for('profile.view', user_id=friend.id) }}" class="friend-badge">{{ friend.username }}</a>
+            {% else %}
+                <p class="empty-message">Нет друзей</p>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

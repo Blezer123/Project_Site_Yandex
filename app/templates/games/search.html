@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Поиск игр — GameHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="steam-logo">
+            <h1>🎮 GAMEHUB</h1>
+            <span>игровое сообщество</span>
+        </div>
 
+        <h2>🔍 Поиск игр</h2>
+        <div class="subtitle">Найди любую игру и поделись мнением</div>
+
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- форма поиска -->
+
+        <form method="GET" class="search-box">
+            <input type="text" name="q" placeholder="Введите название игры..." value="{{ query }}">
+            <button type="submit" class="btn-steam">🔍 Искать</button>
+        </form>
+
+        <!-- результаты поиска -->
+
+        {% if query %}
+            <div class="games-grid">
+                {% for game in games %}
+                <div class="game-card">
+                    {% if game.cover %}
+                        <img src="{{ game.cover }}" alt="{{ game.title }}">
+                    {% else %}
+                        <div class="no-image">🎮</div>
+                    {% endif %}
+                    <h3>{{ game.title[:30] }}</h3>
+                    <p>📅 {{ game.year if game.year else '?' }}</p>
+                    {% if game.rating %}
+                        <p>⭐ {{ game.rating }}/5</p>
+                    {% endif %}
+                    <a href="#">Подробнее</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% if games|length == 0 %}
+                <p style="text-align: center; color: #8F98A0;">❌ Ничего не найдено. Попробуйте "Witcher" или "Elden Ring"</p>
+            {% endif %}
+        {% endif %}
+
+        <div class="login-link">
+            <a href="{{ url_for('main.index') }}">← На главную</a>
+        </div>
+    </div>
 </body>
 </html>
